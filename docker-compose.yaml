@@ -4,14 +4,14 @@ services:
     image: lscr.io/linuxserver/jackett:latest
     container_name: jackett
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=Etc/UTC
       - AUTO_UPDATE=true #optional
       - RUN_OPTS= #optional
     volumes:
-      - /path/to/jackett/data:/config
-      - /path/to/blackhole:/downloads
+      - ./config:/config
+      - ${SERVERS}/data:/data
     ports:
       - 9117:9117
     restart: unless-stopped
